@@ -5,24 +5,32 @@ import * as actions from '../../store/actions';
 import { PrivateRoute } from '../../router/privateRoute';
 import { PropsRoute } from '../../router/propsRoute';
 import LoginForm from '../LoginForm';
-import OrderBook from '../OrderBook';
-import OrderForm from '../OrderForm';
+import Orders from '../Orders';
 
 
 class App extends Component {
     render() {
+        // methods
+        const { login, addBuyOrder, addSellOrder } = this.props;
+        // properties
+        const { token, buyOrders, sellOrders } = this.props;
+
         return (
             <Fragment>
                 <Router>
                     <Switch>
                         <PropsRoute path='/login'
                                     component={ LoginForm }
-                                    login={ this.props.login } />
+                                    login={ login } />
 
                         <PrivateRoute path='/orders'
                                       redirectTo='/login'
-                                      component={ OrderBook }
-                                      token={ this.props.token } />
+                                      component={ Orders }
+                                      addBuyOrder={ addBuyOrder }
+                                      addSellOrder={ addSellOrder }
+                                      buyOrders={ buyOrders }
+                                      sellOrders={ sellOrders }
+                                      token={ token } />
 
                         <Redirect from='/' to='/login' />
 
