@@ -21,7 +21,7 @@ const styles = theme => ({
 class Orders extends Component {
     render() {
         // methods
-        const { addBuyOrder, addSellOrder } = this.props;
+        const { addBuyOrder, addSellOrder, notify } = this.props;
         // properties
         const { buyOrders, sellOrders, classes } = this.props;
 
@@ -30,7 +30,7 @@ class Orders extends Component {
                 <Grid container className={ classes.root } spacing={ 16 }>
                     <Grid item xs={ 3 }>
                         <Paper className={ classes.control }>
-                            <OrderForm addBuyOrder={ addBuyOrder } addSellOrder={ addSellOrder } />
+                            <OrderForm addBuyOrder={ addBuyOrder } addSellOrder={ addSellOrder } notify={ notify } />
                         </Paper>
                     </Grid>
                     <Grid item xs={ 9 }>

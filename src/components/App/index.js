@@ -43,6 +43,7 @@ class App extends Component {
                                           addSellOrder={ addSellOrder }
                                           buyOrders={ buyOrders }
                                           sellOrders={ sellOrders }
+                                          notify={ notify }
                                           token={ token } />
 
                             <Redirect from='/' to='/login' />

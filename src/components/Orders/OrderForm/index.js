@@ -15,8 +15,8 @@ const styles = theme => ({
 class OrderForm extends Component {
 
     state = {
-        price: 0,
-        amount: 0,
+        price: '',
+        amount: '',
         orderType: 'Limit',
     };
 
@@ -25,11 +25,18 @@ class OrderForm extends Component {
     };
 
     exchangeBuy() {
-        let order = {
-            price: parseFloat(this.state.price),
-            amount: parseFloat(this.state.amount),
-        };
-        this.props.addBuyOrder(order);
+        if (this.state.price && this.state.amount) {
+            let order = {
+                price: parseFloat(this.state.price),
+                amount: parseFloat(this.state.amount),
+            };
+            this.props.addBuyOrder(order);
+        } else {
+            let notification = {
+                msg: 'Amount and price fields are required',
+            }
+            this.props.notify(notification);
+        }
     }
     exchangeSell() {
         let order = {
