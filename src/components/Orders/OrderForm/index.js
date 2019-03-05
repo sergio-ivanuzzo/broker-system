@@ -39,11 +39,18 @@ class OrderForm extends Component {
         }
     }
     exchangeSell() {
-        let order = {
-            price: parseFloat(this.state.price),
-            amount: parseFloat(this.state.amount),
-        };
-        this.props.addSellOrder(order);
+        if (this.state.price && this.state.amount) {
+            let order = {
+                price: parseFloat(this.state.price),
+                amount: parseFloat(this.state.amount),
+            };
+            this.props.addSellOrder(order);
+        } else {
+            let notification = {
+                msg: 'Amount and price fields are required',
+            }
+            this.props.notify(notification);
+        }
     }
 
     render() {
