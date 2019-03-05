@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { withStyles, TextField, Button, Grid } from '@material-ui/core';
+import {withStyles, TextField, Button, Select, Grid, MenuItem} from '@material-ui/core';
 
 
 const styles = theme => ({
@@ -17,6 +17,7 @@ class OrderForm extends Component {
     state = {
         price: 0,
         amount: 0,
+        orderType: 'Limit',
     };
 
     handleChange = name => event => {
@@ -46,14 +47,9 @@ class OrderForm extends Component {
                 <form className={ classes.container } noValidate autoComplete='off'>
                     <Grid container>
                         <Grid item xs={ 12 }>
-                            <TextField
-                                id='orderType'
-                                label='Username'
-                                className={ classes.textField }
-                                value={ this.state.name }
-                                onChange={ this.handleChange('name') }
-                                margin='normal'
-                            />
+                            <Select value={this.state.orderType} disabled>
+                                <MenuItem value='Limit'>{this.state.orderType}</MenuItem>
+                            </Select>
                         </Grid>
                         <Grid item xs={ 12 }>
                             <TextField

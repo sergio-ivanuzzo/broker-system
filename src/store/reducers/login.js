@@ -3,13 +3,15 @@ import LocalStorageService from '../../services/localStorageService';
 
 
 const initialState = {
-    token: null
+    token: LocalStorageService.get_from_storage('token', null)
 };
 
 export const login = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.LOGIN:
-            return {...state, token: action.payload.token}
+            let token = action.payload.token;
+            LocalStorageService.save_to_storage('token', token);
+            return {...state, token }
         default:
             return state;
     }

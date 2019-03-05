@@ -21,3 +21,17 @@ export const addSellOrder = (order) => ({
         order
     }
 });
+
+export const notify = (notification) => ({
+    type: actionTypes.NOTIFY,
+    payload: {
+        notification
+    }
+});
+
+export const removeNotification = (notification) => ({
+    type: actionTypes.REMOVE_NOTIFICATION,
+    payload: {
+        notification
+    }
+});

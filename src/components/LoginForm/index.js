@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { withRouter} from 'react-router-dom';
-import { withStyles } from '@material-ui/core/styles';
-import { TextField, Button } from '@material-ui/core';
+import { withStyles, TextField, Button } from '@material-ui/core';
 
 
 const styles = theme => ({
@@ -26,9 +25,16 @@ class LoginForm extends Component {
     };
 
     doLogin() {
-        let token = btoa(`${this.state.name}:${this.state.password}`);
-        this.props.login(token);
-        this.props.history.push('/orders');
+        if (this.state.name == 'test' && this.state.password == 'test') {
+            let token = btoa(`${this.state.name}:${this.state.password}`);
+            this.props.login(token);
+            this.props.history.push('/orders');
+        } else {
+            let notification = {
+                msg: 'Incorrect username or password',
+            }
+            this.props.notify(notification);
+        }
     }
 
     render() {

@@ -4,9 +4,9 @@ import LocalStorageService from '../../services/localStorageService';
 
 const initialState = {
     buyOrders: {
-        data: [],
-        total: 0,
-        index: 0,
+        data: LocalStorageService.get_from_storage('buyOrdersData'),
+        total: LocalStorageService.get_from_storage('buyOrdersTotal', 0),
+        index: LocalStorageService.get_from_storage('buyOrdersIndex', 0),
     }
 };
 
@@ -22,6 +22,10 @@ export const buyOrders = (state = initialState, action) => {
             order.total = total;
             data = [...data, order];
             total += order.price;
+            LocalStorageService.save_to_storage('buyOrdersData', data);
+            LocalStorageService.save_to_storage('buyOrdersTotal', total);
+            LocalStorageService.save_to_storage('buyOrdersIndex', index);
+
             return { ...state, buyOrders: { data, total, index } };
         default:
             return state;
